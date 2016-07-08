@@ -1,220 +1,161 @@
-Biblioteca de integração PagSeguro para PHP
-===========================================
+The PagSeguro library in PHP is a set of domain classes that make it easier for the PHP developer, the use of features that PagSeguro offers in the form of APIs With the installed and configured the library, you can easily integrate features like.:
 
-[![Code Climate](https://codeclimate.com/github/pagseguro/php/badges/gpa.svg)](https://codeclimate.com/github/pagseguro/php)
+Create payment requests
+Create signature requests
+Cancel subscriptions
+consult signatures
+Consult code for transactions
+Consult transactions by date range
+Consult abandoned transactions
+receive notifications
+requirements
 
-Descrição
----------
+PHP 5.4.27+
+SPL
+cURL
+SUN
+Installation
 
-A biblioteca PagSeguro em PHP é um conjunto de classes de domínio que facilitam, para o desenvolvedor PHP, a utilização das funcionalidades que o PagSeguro oferece na forma de APIs. Com a biblioteca instalada e configurada, você pode facilmente integrar funcionalidades como:
+Download the repository as a zip file or make a clone;
+Unzip the files on your computer;
+Within the source directory are two directories: the examples and PagSeguroLibrary. The examples directory contains examples of using the API calls and PagSeguroLibrary directory contains the actual library. If you want to import only the library, upload PagSeguroLibrary directory and add the PagSeguroLibrary.php class in your project. This class will be responsible for importing all library features on your system.
+Installation via Composer
 
- - Criar [requisições de pagamentos]
- - Criar [requisições de assinaturas]
- - Cancelar [assinaturas]
- - Consultar [assinaturas]
- - Consultar [transações por código]
- - Consultar [transações por intervalo de datas]
- - Consultar [transações abandonadas]
- - Receber [notificações]
-
-
-Requisitos
-----------
-
- - [PHP] 5.4.27+
- - [SPL]
- - [cURL]
- - [DOM]
-
-
-Instalação
-----------
-
- - Baixe o repositório como arquivo zip ou faça um clone;
- - Descompacte os arquivos em seu computador;
- - Dentro do diretório *source* existem dois diretórios: o *examples* e o *PagSeguroLibrary*. O diretório *examples* contém exemplos de chamadas utilizando a API e o diretório *PagSeguroLibrary* contém a biblioteca propriamente dita. Caso queira importar somente a biblioteca, faça upload do diretório *PagSeguroLibrary* e inclua a classe *PagSeguroLibrary.php* em seu projeto. Essa classe se encarregará de importar todas as funcionalidades da biblioteca no seu sistema.
-
-Instalação via Composer
-
-- Alternativamente, é possível utilizar o [Composer] para carregar a biblioteca ([pagseguro/php]).
-```composer.json
+Alternatively, you can use Composer to load the library (PagSeguro / php).
 {
-    "require": {
-       "pagseguro/php": "@stable"
-    }
+    "Require": {
+       "PagSeguro / php", "@stable"
+    }
 }
-```
+Configuration
 
+To make real use of the library, you must make some settings in 'PagSeguroConfig.php' file, which is in the 'config' directory. The available options are described below.
 
-Configuração
-------------
+environment: accept the values ​​production and sandbox. To use the sandbox, you must create an account in https://sandbox.pagseguro.uol.com.br.
+email: e-mail registered in PagSeguro.
+token production: token generated in PagSeguro.
+token sandbox: token generated in the Sandbox.
+appId production: application generated in PagSeguro.
+appId sandbox: application generated in the Sandbox.
+AppKey production: application token in PagSeguro.
+AppKey sandbox: application token in the Sandbox.
+charset: codification of your system (ISO-8859-1 or UTF-8).
+log: enable / disable the generation of logs.
+FileLocation: where you want to create the log file. Ex .: /logs/ps.log.
+More information is available in the official documentation.
 
-Para fazer uso real da biblioteca, é preciso fazer algumas configurações no arquivo 'PagSeguroConfig.php', que encontra-se no diretório 'config'. As opções disponíveis estão descritas abaixo.
+Doubts?
 
- - **environment**: aceita os valores *production* e *sandbox*. Para utilizar o *sandbox*, é preciso criar uma conta em https://sandbox.pagseguro.uol.com.br.
- - **email**: e-mail cadastrado no PagSeguro.
- - **token production**: token gerado no PagSeguro.
- - **token sandbox**: token gerado no Sandbox.
- - **appId production**: aplicacao gerada no PagSeguro.
- - **appId sandbox**: aplicacao gerada no Sandbox.
- - **appKey production**: token da aplicacao no PagSeguro.
- - **appKey sandbox**: token da aplicacao no Sandbox.
- - **charset**: codificação do seu sistema (ISO-8859-1 ou UTF-8).
- - **log**: ativa/desativa a geração de logs.
- - **fileLocation**: local onde se deseja criar o arquivo de log. Ex.: /logs/ps.log.
+If you have questions or need support, please visit our forum.
 
-Mais informações estão disponíveis na [documentação oficial].
+changelog
 
-
-Dúvidas?
-----------
----
-Caso tenha dúvidas ou precise de suporte, acesse nosso [fórum].
-
-
-Changelog
----------
 2.7.1
- - Possibilidade de definir parcelamento sem juros.
- - Ajustes em geral.
 
+Possibility to define installments without interest.
+Adjustments in general.
 2.7.0
- - Integração com serviço de consulta de Assinaturas (PreApproval) por código de notificação.
 
+Integration Subscription consultation service (preapproval) notification code.
 2.6.0
- - Env Variables para integração com Laravel 5 #0a2c2ba
- - Wrapper para o arquivo de configuração #c1b0985
- - Implementação da API de assinaturas #7cd8147
- - Integração com serviço de solicitação de cancelamento.
- - Ajustes em geral.
- - Obs.: Algumas das funcionalidades descritas ainda não estão disponíveis comercialmente para todos os vendedores. Em caso de dúvidas acesse nosso [fórum].
 
+Env Variables for integration with Laravel 5 # 0a2c2ba
+Wrapper for the configuration file # c1b0985
+API implementation signatures # 7cd8147
+Integration with cancellation request service.
+Adjustments in general.
+Obs .: Some of the features described are not yet commercially available for all sellers. For questions visit our forum.
 2.5.0
- - Possibilidade de definir descontos por meio de pagamento durante a requisição do código de checkout - Ver exemplo createPaymentRequest.php
 
+Ability to set discounts through payment during the checkout code request - See example createPaymentRequest.php
 2.4.0
- - Integração com serviço de consulta de transações/autorizações por código de referência.
- - Integração com serviço de modelo de aplicações.
- - Integração com serviço de solicitação de estorno.
- - Ajustes em geral.
- - Obs.: As funcionalidades descritas acima ainda não estão disponíveis comercialmente para todos os vendedores. Em caso de dúvidas acesse nosso [fórum].
 
+Integration with transactions consultation service / permits by reference code.
+Integration with application service model.
+Integration with chargeback request service.
+Adjustments in general.
+Obs .: The features described above are not yet commercially available for all sellers. For questions visit our forum.
 2.3.0
- - Adicionado classes e métodos para utilização do [Checkout Transparente].
- - As consultas por código de notificação e por código da transação passam a utilizar a nova versão das APIs.
 
+Added classes and methods for using Checkout Transparent.
+Consultations notification code and transaction code start using the new version of the APIs.
 2.2.4
- - Adicionado método setEnvironment na classe PagSeguroConfig
- - Melhorias na documentação/comentários do código
- - Ajustes diversos
 
+Added setEnvironment method in class PagSeguroConfig
+Improvements in the documentation / code comments
+various adjustments
 2.2.3
- - Ajustes no código
 
+Adjustments in the code
 2.2.2
- - Adicionando environment *sandbox*
 
+Adding sandbox environment
 2.2.1
- - Ajuste no tratamento do XML retornado em requisições feitas ao PagSeguro
 
+Set in the XML returned in treatment requests made to PagSeguro
 2.2.0
- - Ao registrar a transação é possível obter apenas o código do checkout para utilização em um checkout lightbox (ver exemplo createPaymentRequestLightbox.php). Obs.: Esta funcionalidade ainda não está disponível comercialmente para todos os vendedores.
 
+By registering the transaction it is possible to obtain only the checkout code for use in a lightbox checkout (see example createPaymentRequestLightbox.php). Obs .: This feature is not yet commercially available for all sellers.
 2.1.9
- - Melhorias "estéticas" no código, como identação/formatação.
 
+"Aesthetic" improvements in the code, such as indenting / formatting.
 2.1.8
 
- - Atualização dos códigos de meios de pagamento.
- - Melhoria na identificação dos requisitos mínimos para funcionamento.
- - Melhoria no tratamento de dados relacionados a endereço.
-
+Update of means of payment codes.
+Improved identification of minimum requirements for operation.
+Improvement in the treatment of related address data.
 2.1.7
 
- - Adicionado: Classes para manipulação de metadados e parâmetros genéricos.
-
+Added: Classes for handling metadata and generic parameters.
 2.1.6
 
- - Adicionado: Classe para manipulação de documentos do sender, ex. CPF.
-
+Added: Class for handling sender documents, ex. CPF.
 2.1.5
 
- - Adicionado: Funcionalidade de envio de url de notificação via requisição de checkout.
- - Adicionado: Novas funcionalidades para tratamento de dados no helper.
- - Correção: Tratamento de duplo espaço no sender name da requisição de checkout.
-
+Added: url submission functionality notification via checkout request.
+Added: New features for data processing in the helper.
+Correction: Treatment double space sender name of the checkout request.
 2.1.4
 
- - Adicionado: Classe para manipulação de moedas permitidas nas transações com o PagSeguro.
-
+Added: Class for handling coins allowed in transactions with PagSeguro.
 2.1.3
 
- - Correção: A requisição era abortada se a geração de log estivesse ativa e o usuário não possuisse arquivo para geração de log nem permissão de escrita e leitura para o arquivo.
-
+Correction: The request was aborted if the log generation was active and the user did not have to file log generation or writable and read to the file.
 2.0.0 - 2.1.2
 
- - Classes de domínios que representam pagamentos, notificações e transações.
- - Criação de checkouts via API.
- - Controller para processar notificações de pagamento enviadas pelo PagSeguro.
- - Módulo de consulta de transações.
-
-
-Licença
--------
+Classes domains representing payments, notifications and transactions.
+checkouts creation via API.
+Controller to process payment notifications sent by PagSeguro.
+transaction query module.
+License
 
 Copyright 2013 PagSeguro Internet LTDA.
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may Obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Unless required by applicable law or agreed to in writing, distributed under the License is distributed on an software "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
+Grades
 
-Notas
------
+The PagSeguro only accepts payment using the Brazilian Real (BRL).
+Make sure the email and informed token are related to an account that has the vendor or business profile.
+Make sure you have correctly set the charset according to the encoding (ISO-8859-1 or UTF-8) from your system. This will prevent the transactions generate possible errors or failures or even special characters may be displayed differently from the usual way.
+For normally occurs generating logs, make sure that the directory and the log file has read and write permissions.
+To use the transparent checkout, the activation request is required along with PagSeguro team, more information can be found at Receiving payments by PagSeguro.
+Doubts?
 
- - O PagSeguro somente aceita pagamento utilizando a moeda Real brasileiro (BRL).
- - Certifique-se que o email e o token informados estejam relacionados a uma conta que possua o perfil de vendedor ou empresarial.
- - Certifique-se que tenha definido corretamente o charset de acordo com a codificação (ISO-8859-1 ou UTF-8) do seu sistema. Isso irá prevenir que as transações gerem possíveis erros ou quebras ou ainda que caracteres especiais possam ser apresentados de maneira diferente do habitual.
- - Para que ocorra normalmente a geração de logs, certifique-se que o diretório e o arquivo de log tenham permissões de leitura e escrita.
- - Para a utilizar o checkout transparente, é necessária a solicitação de ativação junto com a equipe do PagSeguro, maiores informações podem ser encontradas em [Como receber pagamentos pelo PagSeguro].
+For questions visit our forum.
 
+Contributions
 
-Dúvidas?
-----------
+He found and fixed a bug or have a feature in mind and want to contribute?
 
-Em caso de dúvidas acesse nosso [fórum].
+Take a fork
+Add feature or bug fix (git checkout -b my-new-feature)
+Commit your changes (git commit -am 'Added some feature')
+Turn a push to the branch (git push origin my-new-feature)
+Please Pull Request
+Obs .: Add examples for your new feature. If your Pull Request is related to a specific version, the Pull Request should not be sent to the master branch but to the corresponding branch version.
 
-
-Contribuições
--------------
-
-Achou e corrigiu um bug ou tem alguma feature em mente e deseja contribuir?
-
-* Faça um fork
-* Adicione sua feature ou correção de bug (git checkout -b my-new-feature)
-* Commit suas mudanças (git commit -am 'Added some feature')
-* Rode um push para o branch (git push origin my-new-feature)
-* Envie um Pull Request
-* Obs.: Adicione exemplos para sua nova feature. Se seu Pull Request for relacionado a uma versão específica, o Pull Request não deve ser enviado para o branch master e sim para o branch correspondente a versão.
-
-
-  [requisições de assinaturas]: http://download.uol.com.br/pagseguro/docs/pagseguro-assinatura-automatica.pdf
-  [assinaturas]: http://download.uol.com.br/pagseguro/docs/pagseguro-assinatura-automatica.pdf
-  [requisições de pagamentos]: https://pagseguro.uol.com.br/v2/guia-de-integracao/api-de-pagamentos.html
-  [notificações]: https://pagseguro.uol.com.br/v3/guia-de-integracao/api-de-notificacoes.html
-  [Checkout Transparente]: https://pagseguro.uol.com.br/receba-pagamentos.jhtml#checkout-transparent
-  [transações por código]: https://pagseguro.uol.com.br/v3/guia-de-integracao/consulta-de-transacoes-por-codigo.html
-  [transações por intervalo de datas]: https://pagseguro.uol.com.br/v2/guia-de-integracao/consulta-de-transacoes-por-intervalo-de-datas.html
-  [transações abandonadas]: https://pagseguro.uol.com.br/v2/guia-de-integracao/consulta-de-transacoes-abandonadas.html
-  [fórum]: http://forum.pagseguro.uol.com.br/
-  [PHP]: http://www.php.net/
-  [SPL]: http://php.net/manual/en/book.spl.php
-  [cURL]: http://php.net/manual/en/book.curl.php
-  [DOM]: http://php.net/manual/en/book.dom.php
-  [GitHub]: https://github.com/pagseguro/php/
-  [documentação oficial]: https://pagseguro.uol.com.br/v2/guia-de-integracao/tutorial-da-biblioteca-pagseguro-em-php.html
-  [Composer]: https://getcomposer.org
-  [pagseguro/php]: https://packagist.org/packages/pagseguro/php
-  [Como receber pagamentos pelo PagSeguro]: https://pagseguro.uol.com.br/receba-pagamentos.jhtml#checkout-transparent
